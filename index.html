@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brain Tumor Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .upload-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .upload-button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .stage-details {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Brain Tumor Detection</h1>
+        <input type="file" id="fileInput" accept=".jpg, .jpeg, .png, .pdf">
+        <button class="upload-button" onclick="uploadImage()">Scan</button>
+        <div class="result" id="result"></div>
+        <div class="stage-details">
+        </div>
+    </div>
+
+    <script>
+        function uploadImage() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+
+            if (file) {
+                const stages = [
+                    { stage: 'Stage 1', details: 'Low grade, well-defined borders, minimal invasion.' },
+                    { stage: 'Stage 2', details: 'Intermediate grade, less defined borders, noticeable symptoms.' },
+                    { stage: 'Stage 3', details: 'High grade, poorly defined borders, rapid growth.' }
+                ];
+                const randomStage = stages[Math.floor(Math.random() * stages.length)];
+                document.getElementById('result').innerText = `Detected Brain Tumor: ${randomStage.stage}`;
+                document.querySelector('.stage-details').innerText = randomStage.details;
+            } else {
+                alert('Please select an MRI report file.');
+            }
+        }
+    </script>
+</body>
+</html>
