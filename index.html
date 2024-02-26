@@ -6,44 +6,59 @@
     <title>Brain Tumor Detection</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-image: url('background.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url('background.jpg'); /* Background image URL */
+            background-size: cover;
+            background-repeat: no-repeat;
         }
         .container {
             max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
+            padding: 40px;
             background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1, h2, p {
+            margin-bottom: 20px;
         }
         h1 {
-            text-align: center;
             color: #333;
+            font-size: 36px;
+        }
+        h2 {
+            color: #555;
+            font-size: 24px;
+        }
+        p {
+            color: #777;
+            font-size: 18px;
         }
         .upload-button {
-            display: block;
-            width: 100%;
-            padding: 10px;
+            display: inline-block;
+            padding: 12px 24px;
             background-color: #007bff;
-            color: #ffffff;
+            color: #fff;
             border: none;
             border-radius: 4px;
             font-size: 16px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
         .upload-button:hover {
             background-color: #0056b3;
         }
         .result {
             margin-top: 20px;
-            text-align: center;
             font-size: 18px;
             font-weight: bold;
+            color: #333;
         }
         .stage-details {
             margin-top: 20px;
@@ -55,30 +70,19 @@
 <body>
     <div class="container">
         <h1>Brain Tumor Detection</h1>
-        <input type="file" id="fileInput" accept=".jpg, .jpeg, .png, .pdf">
-        <button class="upload-button" onclick="uploadImage()">Scan</button>
+        <h2>Welcome to Brain Tumor Detection</h2>
+        <p>Upload your MRI image and click "Scan" to get started.</p>
+        <input type="file" id="fileInput" accept=".jpg, .jpeg, .png">
+        <button class="upload-button" onclick="navigateToRandomPage()">Scan MRI</button>
         <div class="result" id="result"></div>
-        <div class="stage-details">
-        </div>
+        <div class="stage-details"></div>
     </div>
 
     <script>
-        function uploadImage() {
-            const fileInput = document.getElementById('fileInput');
-            const file = fileInput.files[0];
-
-            if (file) {
-                const stages = [
-                    { stage: 'Stage 1', details: 'Low grade, well-defined borders, minimal invasion.' },
-                    { stage: 'Stage 2', details: 'Intermediate grade, less defined borders, noticeable symptoms.' },
-                    { stage: 'Stage 3', details: 'High grade, poorly defined borders, rapid growth.' }
-                ];
-                const randomStage = stages[Math.floor(Math.random() * stages.length)];
-                document.getElementById('result').innerText = `Detected Brain Tumor: ${randomStage.stage}`;
-                document.querySelector('.stage-details').innerText = randomStage.details;
-            } else {
-                alert('Please select an MRI report file.');
-            }
+        function navigateToRandomPage() {
+            const pages = ['stage1.html', 'stage2.html', 'stage3.html','stage4.html'];
+            const randomPage = pages[Math.floor(Math.random() * pages.length)];
+            window.location.href = randomPage;
         }
     </script>
 </body>
